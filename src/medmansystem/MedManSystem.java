@@ -4,9 +4,6 @@
  */
 package medmansystem;
 import java.io.PrintStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Scanner;
 /**
  *
@@ -38,30 +35,17 @@ public class MedManSystem {
         public String email;
         public String specialisation;
     }
-    
-    //Function to connect to DataBase
-//    static void connectDb(String url, String user, String password) {
-//            try {
-//            Connection con = DriverManager.getConnection(url , user, password);
-//            if (con != null) {
-//                OUT.println("Sucessfully connected"); 
-//            }
-//        } catch (SQLException e) {
-//            OUT.println(e + "\nNot connected");
-//        }
-//        }
 
     public static void main(String[] args) throws Exception{
-        // Users user = new Users();
-        
-//        String url = "jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=CONVERT_TO_NULL [root on Default schema]";
-//        String dbUser = "root";
-//        String password = "12345";
-        
-//        connectDb(url , dbUser, password);
+        Users user = new Users();
+        user.name = "Something";
+        user.setPassword("password");
+        user.contact = 679862916;
+        user.specialisation = "sickness";
         
         MySqlAccess data = new MySqlAccess();
-        data.readDataBase();
+        // data.readDataBase();
+        data.addNewUser(user.name, user.getPassword(), user.contact, user.getEmail());
     }
     
 }

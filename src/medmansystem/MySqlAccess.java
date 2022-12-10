@@ -29,8 +29,7 @@ public class MySqlAccess {
             writeResultSet(resultSet);
 
             // Remove again the insert comment
-            preparedStatement = connect
-            .prepareStatement("delete from medmansystem.users where user_name = ?;");
+            preparedStatement = connect.prepareStatement("delete from medmansystem.users where user_name = ?;");
             preparedStatement.setString(1, "Test");
             preparedStatement.executeUpdate();
 
@@ -38,10 +37,17 @@ public class MySqlAccess {
             writeMetaData(resultSet);
 
         } catch (ClassNotFoundException | SQLException e) {
-            // TODO: handle exception
             throw e;
-        } finally {
-            close();
+        }
+    }
+
+    //create a new user in database
+    void addNewUser(String name, String password, int contact, String email) throws Exception {
+        try {
+            statement = connect.createStatement();
+            resultSet = statement.executeQuery("insert into users (user_name, password, contact, email) values (" + name + ", "+ password + ", " + contact + ", " + email + ")");
+        } catch (Exception e) {
+            throw e;
         }
     }
 
@@ -80,4 +86,6 @@ public class MySqlAccess {
             OUT.println(resultSet);
         }
     }
+
+    
 }
