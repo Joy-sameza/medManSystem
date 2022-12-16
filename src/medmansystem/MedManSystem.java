@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package medmansystem;
-import java.io.PrintStream;
 import java.util.Scanner;
 /**
  *
@@ -15,37 +14,29 @@ public class MedManSystem {
      * @param args the command line arguments
      */
 
-    private static final PrintStream OUT = System.out;
     static Scanner sc = new Scanner(System.in);
     
     
-    public class Admin {
-        private String name;
-        public long contact;
-        public String email; 
+    public class Admin extends Users {
+        private int id;
     }
-    public class Patient {
-        protected long id;
-        public String name;
-        private String email;
+    public class Patient extends Users {
+        protected int id;
     }
-    public class Doctor {
-        protected long id;
-        public String name;
-        public String email;
+    public class Doctor extends Users {
+        protected int id;
         public String specialisation;
     }
 
     public static void main(String[] args) throws Exception{
         Users user = new Users();
-        user.name = "Something";
-        user.setPassword("password");
+        user.name = "countries";
+        user.setPassword("passwords");
+        user.setEmail("countries@gmail.com");
         user.contact = 679862916;
-        user.specialisation = "sickness";
         
         MySqlAccess data = new MySqlAccess();
-        data.readDataBase();
-        data.addNewUser(user.name, user.getPassword(), user.contact, user.getEmail());
+        data.updateUser("user_name = 'sam'", "user_name = 'country'");
     }
     
 }

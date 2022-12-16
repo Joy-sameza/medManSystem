@@ -1,6 +1,7 @@
 package medmansystem;
 
 public class Users {
+    protected int id;
     public String name;
     private String email;
     public void setEmail(String email) {
@@ -17,7 +18,6 @@ public class Users {
     public String getPassword() {
         return password;
     }
-    public String specialisation;
 
     public void login() {
         //
@@ -31,10 +31,4 @@ public class Users {
     public void researches() {
       // 
     };
-
-    static class java {
-
-        public java() {
-        }
-    }
 }
