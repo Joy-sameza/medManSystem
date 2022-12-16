@@ -44,7 +44,7 @@ public class MedManSystem {
         user.specialisation = "sickness";
         
         MySqlAccess data = new MySqlAccess();
-        // data.readDataBase();
+        data.readDataBase();
         data.addNewUser(user.name, user.getPassword(), user.contact, user.getEmail());
     }
     

@@ -15,7 +15,7 @@ public class MySqlAccess {
             // This will load the MySQL driver
             Class.forName("com.mysql.cj.jdbc.Driver");
             //Setup connection with the db
-            connect = DriverManager.getConnection("jdbc:mysql://localhost/medmansystem?" + "user=root&password=12345");
+            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","root","12345");
             //Statement allow to issue SQL queries to database
             statement = connect.createStatement();
             //Result set get the result of the sql query
@@ -44,8 +44,10 @@ public class MySqlAccess {
     //create a new user in database
     void addNewUser(String name, String password, int contact, String email) throws Exception {
         try {
-            statement = connect.createStatement();
-            resultSet = statement.executeQuery("insert into users (user_name, password, contact, email) values (" + name + ", "+ password + ", " + contact + ", " + email + ")");
+            String sqlString = "insert into users (user_name, user_password, contact, email) values (default, " + name + ", "+ password + ", " + contact + ", " + email + ")";
+            connect = DriverManager.getConnection("jdbc:mysql://localhost/medmansystem?" + "user=root&password=12345");
+            CallableStatement callableStatement = connect.prepareCall(sqlString);
+            callableStatement.execute();
         } catch (Exception e) {
             throw e;
         }
@@ -85,6 +87,10 @@ public class MySqlAccess {
         while (resultSet.next()) {
             OUT.println(resultSet);
         }
+    }
+
+    private void updateUser() throws Exception{
+
     }
 
     
